@@ -10,7 +10,7 @@ use App\Product;
 class MainController extends Controller
 {
     public function index(ProductsFilterRequest $request) {
-        //$productsQuery = Product::query();
+
         $productsQuery = Product::with('category');
 
         if ($request->filled('price_from')) {
@@ -42,17 +42,6 @@ class MainController extends Controller
     	return view('category', compact('category'));
     }
 
-    // public function product($category, $product = null) {
-    //     return view('product', ['product' => $product]);
-    // }
-    // public function product(Product $product)
-    // {
-    //     return view('product.show', compact('product'));
-    // }
-    // public function product($code){
-    //     $product = Product::where('code', $code)->first();
-    //     return view('product', compact('product'));
-    // }
     public function product($category, $code) {
         $product = Product::where('code', $code)->first();
         return view('product', compact('product'));

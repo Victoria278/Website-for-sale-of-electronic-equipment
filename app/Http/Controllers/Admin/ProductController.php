@@ -42,10 +42,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //Product::create($request->all());
-        //$path = $request->file('image')->store('products');
+
         $params = $request->all();
-        //$params['image'] = $path;
+
         unset($params['image']);
         if ($request->has('image')) {
             $params['image'] = $request->file('image')->store('products');
@@ -73,7 +72,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //return view('auth.products.form', compact('product'));
+
         $categories = Category::get();
         return view('auth.products.form', compact('product', 'categories'));
     }
@@ -87,11 +86,9 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        //$product->update($request->all());
-        //Storage::delete($product->image);
-        //$path = $request->file('image')->store('products');
+
         $params = $request->all();
-        //$params['image'] = $path;
+
         unset($params['image']);
         if ($request->has('image')) {
             Storage::delete($product->image);
