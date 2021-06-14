@@ -3,20 +3,19 @@
 @section('title', 'Все категории ')
 
 @section('content')
-@foreach($categories as $category)
-<div class="col-sm-6 col-md-6">
-    <div class="thumbnail">
-
-        <a href="{{ route('category', $category->code)}}">
+<div class="row">
+    @foreach($categories as $category)
+    	<div class="thumbnail">
+    		<div>
+            <a href="{{ route('category', $category->code)}}">
                 <img src="{{ Storage::url($category->image) }}">
+                <h2>{{ $category->name }}</h2>
             </a>
-        <div class="caption">
-            <h3>{{ $category->name }}</h3>
             <p>
                 {{ $category->description}}
             </p>
+            </div>
         </div>
-    </div>
+    @endforeach
 </div>
-@endforeach
 @endsection

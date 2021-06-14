@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <button type="submit" class="btn btn-primary">Фільтр</button>
-                <a href="{{ route('index') }}" class="btn btn-warning">Скинути фільтри</a>
+                <a href="{{ route('index') }}" class="btn btn-warning">Скасувати фільтри</a>
             </div>
         </div>
     </form>

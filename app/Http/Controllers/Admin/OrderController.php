@@ -8,14 +8,26 @@ use App\Order;
 
 class OrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $orders = Order::where('status', 1)->paginate(10);
+        $orders = Order::active()->paginate(10);
         return view('auth.orders.index', compact('orders'));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Category  $category
+     * @return \Illuminate\Http\Response
+     */
     public function show(Order $order)
     {
-        return view('auth.orders.show', compact('order'));
+        $products = $order->products()->withTrashed()->get();
+        return view('auth.orders.show', compact('order', 'products'));
     }
 }

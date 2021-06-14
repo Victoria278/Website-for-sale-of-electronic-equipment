@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-4">
+<div class="col-sm-6 col-md-3">
     <div class="thumbnail">
         <div class="labels">
             @if($product->isNew())
@@ -20,10 +20,16 @@
             <p>{{ $product->price }} грн.</p>
             <p>
             <form action="{{ route('basket-add', $product) }}" method="POST">
-                <button type="submit" class="btn btn-primary" role="button">В кошик</button>
-                <a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}" class="btn btn-default"
-                   role="button">Детальніше</a>
+                @if($product->isAvailable())
+                    <button type="submit" class="btn btn-primary" role="button">В кошик</button>
+                @else
+                    Нема в наявностi
+                @endif
+                <a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}"
+                   class="btn btn-default"
+                   role="button">Детальнiше</a>
                 @csrf
+            </form>
             </form>
             </p>
         </div>

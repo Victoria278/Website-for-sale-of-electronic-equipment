@@ -13,13 +13,21 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/starter-template.css" rel="stylesheet">
 </head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<body style="background-color:#ECF5F7">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ route('index') }}">Інтернет Магазин</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+            @admin
+            <ul class="nav navbar-nav">
+                    <li><a href="{{ route('categories.index') }}">Категорії</a></li>
+                    <li><a href="{{ route('products.index') }}">Товари</a>
+                    </li>
+                    <li><a href="{{ route('home') }}">Замовлення</a></li>
+            </ul>
+            @else
             <ul class="nav navbar-nav">
                 <li @routeactive('index')><a href="{{ route('index') }}">Всі товари</a></li>
                 <li @routeactive('categor*')><a href="{{ route('categories') }}">Категорії</a>
@@ -27,6 +35,8 @@
                 <li @routeactive('basket*')><a href="{{ route('basket') }}">В кошик</a></li>
                 <!-- <li><a href="{{ route('reset') }}">Сбросить проект в начальное состояние</a></li> -->
             </ul>
+            @endadmin
+            
 
             <ul class="nav navbar-nav navbar-right">
                 @guest

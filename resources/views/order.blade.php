@@ -6,7 +6,7 @@
     <h1>Підтвердіть замовлення:</h1>
     <div class="container">
         <div class="row justify-content-center">
-            <p>Загальна вартість: <b>{{ $order->getFullPrice() }} грн.</b></p>
+            <p>Загальна вартість: <b>{{ $order->calculateFullSum() }} грн.</b></p>
             <form action="{{ route('basket-confirm') }}" method="POST">
                 <div>
                     <p>Вкажіть свое ім'я та номер телефона, щоб наш менеджер міг вам зателефонувати:</p>
@@ -26,15 +26,17 @@
                                 <input type="text" name="phone" id="phone" value="" class="form-control">
                             </div>
                         </div>
+                       <br>
                         <br>
-                        <br>
+                        @guest
                             <div class="form-group">
                                 <label for="name" class="control-label col-lg-offset-3 col-lg-2">Email: </label>
                                 <div class="col-lg-4">
                                     <input type="text" name="email" id="email" value="" class="form-control">
                                 </div>
                             </div>
-                            </div>
+                        @endguest
+                    </div>
                     <br>
                     @csrf
                 <input type="submit" class="btn btn-success" value="Підтвердити замовлення">
